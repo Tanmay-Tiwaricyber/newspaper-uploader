@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>NewsPaper Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:700,900&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+      font-family: 'Poppins', Arial, sans-serif;
+      color: #232946;
+      min-height: 100vh;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      justify-content: space-between;
+      background: #fafafa;
+    }
+    .dashboard-header {
+      width: 100%;
+      background: radial-gradient(circle at 0 0, #2d2d3a 60%, #888 100%);
+      border-radius: 0 0 32px 32px;
+      padding: 32px 0 12px 0;
+      text-align: center;
+      margin-bottom: 0;
+      position: relative;
+    }
+    .dashboard-header h1 {
+      color: #fff;
+      font-family: 'Poppins', Arial, sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      margin: 0;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #0002;
+    }
+    .dashboard-header .subtitle {
+      color: #ffd966;
+      font-size: 2rem;
+      font-weight: 900;
+      margin: 0 0 0 0;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #0002;
+      border-bottom: 2px solid #ccc;
+      display: inline-block;
+      padding-bottom: 2px;
+    }
+    .dashboard-header .divider {
+      border: none;
+      border-top: 2px solid #ccc;
+      width: 80%;
+      margin: 10px auto 0 auto;
+    }
+    .dashboard-subbar {
+      width: 90%;
+      margin: 18px auto 18px auto;
+      background: #232946;
+      color: #ffd966;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 24px;
+      text-align: center;
+      padding: 10px 0 8px 0;
+      box-shadow: 0 2px 8px #0001;
+      font-style: italic;
+      letter-spacing: 0.5px;
+    }
+    .ads-block {
+      width: 90%;
+      margin: 0 auto 18px auto;
+      background: #232946;
+      color: #fff;
+      font-size: 2rem;
+      font-weight: 700;
+      border-radius: 18px;
+      text-align: center;
+      padding: 32px 0;
+      box-shadow: 0 2px 8px #0001;
+      letter-spacing: 1px;
+    }
+    .newspaper-card {
+      width: 90%;
+      margin: 0 auto 18px auto;
+      background: #fff;
+      border: 2.5px solid #232946;
+      border-radius: 18px;
+      box-shadow: 0 2px 8px #0001;
+      padding: 18px 12px 24px 12px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .newspaper-card .news-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #232946;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0.5px;
+    }
+    .newspaper-card .news-date {
+      font-size: 1.15rem;
+      color: #232946;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .newspaper-card .divider {
+      border: none;
+      border-top: 2px solid #ccc;
+      width: 90%;
+      margin: 10px auto 10px auto;
+    }
+    .download-btn {
+      width: 100%;
+      background: #232946;
+      color: #fff;
+      border: none;
+      padding: 14px 0;
+      border-radius: 4px;
+      font-size: 1.13rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s, transform 0.1s;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px #0001;
+    }
+    .download-btn:active {
+      background: #1a1a22;
+      transform: scale(0.98);
+    }
+    .telegram-banner {
+      width: 100vw;
+      max-width: 414px;
+      background: radial-gradient(circle at 100% 100%, #2d2d3a 60%, #f6c177 100%);
+      color: #ffb84c;
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 22px 0 18px 0;
+      border-radius: 24px 24px 0 0;
+      margin: 0 auto 0 auto;
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      z-index: 100;
+      box-shadow: 0 -2px 16px #0002;
+      letter-spacing: 0.5px;
+    }
+    @media (max-width: 500px) {
+      .dashboard-header { padding: 24px 0 8px 0; border-radius: 0 0 18px 18px; }
+      .dashboard-header h1 { font-size: 1.5rem; }
+      .dashboard-header .subtitle { font-size: 1.2rem; }
+      .ads-block { font-size: 1.2rem; padding: 18px 0; }
+      .newspaper-card { padding: 10px 4px 14px 4px; }
+      .telegram-banner { font-size: 1.05rem; border-radius: 16px 16px 0 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-header">
+    <h1>NewsPaper</h1>
+    <div class="subtitle">Dashboard</div>
+    <!-- <hr class="divider"> -->
+  </div>
+  <div class="dashboard-subbar">
+    Download NewsPaper From Here
+  </div>
+  <div class="ads-block">ADS</div>
+  <% newspapers.forEach(function(np) { %>
+    <div class="newspaper-card">
+      <div class="news-title">
+        📰 <%= np.name %>
+      </div>
+      <hr class="divider">
+      <div class="news-date">
+        📅 <%= np.date %>
+      </div>
+      <form action="/download/<%= np.id %>" method="get" style="width:100%;">
+        <button class="download-btn" type="submit">Download Now</button>
+      </form>
+    </div>
+  <% }) %>
+  <div class="ads-block">ADS</div>
+  <div class="telegram-banner">
+    Join Our telegram Channel
+  </div>
+</body>
+</html>

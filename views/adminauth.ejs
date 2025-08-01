@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>NewsPaper Admin Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:700,900&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+      font-family: 'Poppins', Arial, sans-serif;
+      color: #2d2d3a;
+      min-height: 100vh;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      justify-content: space-between;
+      background: #fafafa;
+    }
+    .auth-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 0;
+      padding-bottom: 24px;
+    }
+    .auth-header {
+      width: 100%;
+      background: radial-gradient(circle at 0 0, #2d2d3a 60%, #888 100%);
+      border-radius: 0 0 32px 32px;
+      padding: 48px 0 12px 0;
+      text-align: center;
+      margin-bottom: 0;
+    }
+    .auth-header h1 {
+      color: #fff;
+      font-family: 'Poppins', Arial, sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      margin: 0;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #0002;
+    }
+    .auth-header .subtitle {
+      color: #ffd966;
+      font-size: 2rem;
+      font-weight: 900;
+      margin: 0 0 0 0;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #0002;
+      border-bottom: 2px solid #ccc;
+      display: inline-block;
+      padding-bottom: 2px;
+    }
+    .auth-header .divider {
+      border: none;
+      border-top: 2px solid #ccc;
+      width: 80%;
+      margin: 10px auto 0 auto;
+    }
+    .auth-card {
+      width: 100%;
+      max-width: 370px;
+      background: transparent;
+      margin: 0 auto;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .auth-title {
+      font-size: 2.3rem;
+      font-weight: 900;
+      color: #2d2d3a;
+      margin: 36px 0 0 0;
+      letter-spacing: 1px;
+      text-align: left;
+      width: 100%;
+    }
+    .auth-title span {
+      display: block;
+      font-size: 2.3rem;
+      font-weight: 900;
+      margin-top: -10px;
+    }
+    .divider {
+      width: 100%;
+      border: none;
+      border-top: 2px dashed #ccc;
+      margin: 18px 0 28px 0;
+    }
+    .auth-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .input-group {
+      position: relative;
+      width: 100%;
+    }
+    .auth-input {
+      width: 100%;
+      padding: 12px 44px 12px 0;
+      border: none;
+      border-bottom: 2px solid #ccc;
+      background: transparent;
+      font-size: 1.08rem;
+      color: #2d2d3a;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .auth-input:focus {
+      border-bottom: 2px solid #3b2ff5;
+    }
+    .input-group .toggle-password {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #888;
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 0 8px;
+    }
+    .auth-btn {
+      width: 100%;
+      background: #2d2d3a;
+      color: #fff;
+      border: none;
+      padding: 14px 0;
+      border-radius: 4px;
+      font-size: 1.13rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s, transform 0.1s;
+      letter-spacing: 0.5px;
+    }
+    .auth-btn:active {
+      background: #1a1a22;
+      transform: scale(0.98);
+    }
+    .telegram-banner {
+      width: 100vw;
+      max-width: 414px;
+      background: radial-gradient(circle at 100% 100%, #2d2d3a 60%, #f6c177 100%);
+      color: #ffb84c;
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 22px 0 18px 0;
+      border-radius: 24px 24px 0 0;
+      margin: 0 auto 0 auto;
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      z-index: 100;
+      box-shadow: 0 -2px 16px #0002;
+      letter-spacing: 0.5px;
+    }
+    .error-message, .success-message {
+      width: 100%;
+      margin: 0 0 10px 0;
+      padding: 10px 0;
+      border-radius: 6px;
+      font-size: 1rem;
+      text-align: center;
+      font-weight: 600;
+      animation: fadeIn 0.5s;
+    }
+    .error-message {
+      color: #fff;
+      background: #ff3b3b;
+    }
+    .success-message {
+      color: #fff;
+      background: #2ecc71;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0;}
+      to { opacity: 1;}
+    }
+    @media (max-width: 500px) {
+      .auth-header { padding: 36px 0 18px 0; border-radius: 0 0 18px 18px; }
+      .auth-title { font-size: 2rem; }
+      .auth-title span { font-size: 2rem; }
+      .auth-card { max-width: 98vw; }
+      .telegram-banner { font-size: 1.05rem; border-radius: 16px 16px 0 0; }
+    }
+  </style>
+  <!-- Font Awesome for password toggle -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+  <div class="auth-header">
+    <h1>NewsPaper</h1>
+    <div class="subtitle">ADMIN</div>
+    <hr class="divider">
+  </div>
+  <div class="auth-container">
+    <div class="auth-card">
+      <form class="auth-form" method="POST" action="/admin" autocomplete="on">
+        <div class="auth-title">Hi !<br><span>Welcome</span></div>
+        <hr class="divider">
+        <% if (typeof error !== 'undefined' && error) { %>
+          <div class="error-message"><%= error %></div>
+        <% } %>
+        <div class="input-group">
+          <input class="auth-input" type="text" name="username" placeholder="Username, Email or Phone Number" autocomplete="username" required>
+        </div>
+        <div class="input-group">
+          <input class="auth-input" type="password" name="password" id="admin-password" placeholder="Password" autocomplete="current-password" required>
+          <button type="button" class="toggle-password" onclick="togglePassword('admin-password', this)">
+            <i class="fa-regular fa-eye"></i>
+          </button>
+        </div>
+        <button type="submit" class="auth-btn">Log In</button>
+      </form>
+    </div>
+  </div>
+  <div class="telegram-banner">
+    Join Our telegram Channel
+  </div>
+  <script>
+    // Password show/hide
+    function togglePassword(id, btn) {
+      const input = document.getElementById(id);
+      if (input.type === "password") {
+        input.type = "text";
+        btn.innerHTML = '<i class="fa-regular fa-eye-slash"></i>';
+      } else {
+        input.type = "password";
+        btn.innerHTML = '<i class="fa-regular fa-eye"></i>';
+      }
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+</body>
+</html>

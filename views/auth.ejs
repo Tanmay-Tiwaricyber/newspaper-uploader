@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>NewsPaper Auth</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:700,900&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+      font-family: 'Poppins', Arial, sans-serif;
+      color: #2d2d3a;
+      min-height: 100vh;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      justify-content: space-between;
+      background: #fafafa;
+    }
+    .auth-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 0;
+      padding-bottom: 24px;
+    }
+    .auth-header {
+      width: 100%;
+      background: radial-gradient(circle at 0 0, #2d2d3a 60%, #888 100%);
+      border-radius: 0 0 32px 32px;
+      padding: 48px 0 24px 0;
+      text-align: center;
+      margin-bottom: 0;
+    }
+    .auth-header h1 {
+      color: #fff;
+      font-family: 'Poppins', Arial, sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      margin: 0;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #0002;
+    }
+    .auth-card {
+      width: 100%;
+      max-width: 370px;
+      background: transparent;
+      margin: 0 auto;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .auth-title {
+      font-size: 2.3rem;
+      font-weight: 900;
+      color: #2d2d3a;
+      margin: 36px 0 0 0;
+      letter-spacing: 1px;
+      text-align: left;
+      width: 100%;
+    }
+    .auth-title span {
+      display: block;
+      font-size: 2.3rem;
+      font-weight: 900;
+      margin-top: -10px;
+    }
+    .auth-subtitle {
+      color: #b0b0b0;
+      font-size: 1rem;
+      margin: 0 0 24px 0;
+      font-weight: 500;
+      text-align: left;
+      width: 100%;
+    }
+    .divider {
+      width: 100%;
+      border: none;
+      border-top: 2px dashed #ccc;
+      margin: 18px 0 28px 0;
+    }
+    .auth-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .input-group {
+      position: relative;
+      width: 100%;
+    }
+    .auth-input {
+      width: 100%;
+      padding: 12px 44px 12px 0;
+      border: none;
+      border-bottom: 2px solid #ccc;
+      background: transparent;
+      font-size: 1.08rem;
+      color: #2d2d3a;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .auth-input:focus {
+      border-bottom: 2px solid #3b2ff5;
+    }
+    .input-group .toggle-password {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #888;
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 0 8px;
+    }
+    .input-hint {
+      font-size: 0.92rem;
+      color: #b0b0b0;
+      margin-top: 2px;
+      margin-bottom: -10px;
+      margin-left: 2px;
+    }
+    .auth-btn {
+      width: 100%;
+      background: #2d2d3a;
+      color: #fff;
+      border: none;
+      padding: 14px 0;
+      border-radius: 4px;
+      font-size: 1.13rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s, transform 0.1s;
+      letter-spacing: 0.5px;
+    }
+    .auth-btn:active {
+      background: #1a1a22;
+      transform: scale(0.98);
+    }
+    .auth-footer {
+      margin-top: 32px;
+      text-align: center;
+      color: #b0b0b0;
+      font-size: 1rem;
+      width: 100%;
+    }
+    .auth-footer a {
+      color: #2d2d3a;
+      font-weight: 700;
+      text-decoration: none;
+      margin-left: 8px;
+      transition: color 0.2s;
+    }
+    .auth-footer a:hover {
+      color: #ff6bcb;
+    }
+    .telegram-banner {
+      width: 100vw;
+      max-width: 414px;
+      background: radial-gradient(circle at 100% 100%, #2d2d3a 60%, #f6c177 100%);
+      color: #ffb84c;
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 22px 0 18px 0;
+      border-radius: 24px 24px 0 0;
+      margin: 0 auto 0 auto;
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      z-index: 100;
+      box-shadow: 0 -2px 16px #0002;
+      letter-spacing: 0.5px;
+    }
+    .error-message, .success-message {
+      width: 100%;
+      margin: 0 0 10px 0;
+      padding: 10px 0;
+      border-radius: 6px;
+      font-size: 1rem;
+      text-align: center;
+      font-weight: 600;
+      animation: fadeIn 0.5s;
+    }
+    .error-message {
+      color: #fff;
+      background: #ff3b3b;
+    }
+    .success-message {
+      color: #fff;
+      background: #2ecc71;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0;}
+      to { opacity: 1;}
+    }
+    @media (max-width: 500px) {
+      .auth-header { padding: 36px 0 18px 0; border-radius: 0 0 18px 18px; }
+      .auth-title { font-size: 2rem; }
+      .auth-title span { font-size: 2rem; }
+      .auth-card { max-width: 98vw; }
+      .telegram-banner { font-size: 1.05rem; border-radius: 16px 16px 0 0; }
+    }
+  </style>
+  <!-- Firebase App (the core Firebase SDK) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <!-- Firebase Auth -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+  <div class="auth-header">
+    <h1>NewsPaper</h1>
+  </div>
+  <div class="auth-container">
+    <div class="auth-card">
+      <!-- Login Form -->
+      <form id="loginForm" class="auth-form" autocomplete="on" style="display:block;">
+        <div class="auth-title">Hi !<br><span>Welcome</span></div>
+        <hr class="divider">
+        <div id="login-message"></div>
+        <div class="input-group">
+          <input class="auth-input" type="text" id="login-username" placeholder="Email" autocomplete="username" required>
+        </div>
+        <div class="input-group">
+          <input class="auth-input" type="password" id="login-password" placeholder="Password" autocomplete="current-password" required>
+          <button type="button" class="toggle-password" onclick="togglePassword('login-password', this)">
+            <i class="fa-regular fa-eye"></i>
+          </button>
+        </div>
+        <button type="submit" class="auth-btn">Log In</button>
+      </form>
+      <!-- Sign Up Form -->
+      <form id="signupForm" class="auth-form" autocomplete="on" style="display:none;">
+        <div class="auth-title">Welcome</div>
+        <div class="auth-subtitle">Let's create an account</div>
+        <div id="signup-message"></div>
+        <div class="input-group">
+          <input class="auth-input" type="text" id="signup-email" placeholder="Email" autocomplete="email" required>
+        </div>
+        <div class="input-group">
+          <input class="auth-input" type="text" id="signup-fullname" placeholder="Full Name" autocomplete="name" required>
+        </div>
+        <div class="input-group">
+          <input class="auth-input" type="text" id="signup-username" placeholder="Username" autocomplete="username" required>
+        </div>
+        <div class="input-group">
+          <input class="auth-input" type="password" id="signup-password" placeholder="Password" autocomplete="new-password" required>
+          <button type="button" class="toggle-password" onclick="togglePassword('signup-password', this)">
+            <i class="fa-regular fa-eye"></i>
+          </button>
+        </div>
+        <div class="input-hint">Must contain a number and at least 6 characters</div>
+        <div class="input-group">
+          <input class="auth-input" type="password" id="signup-confirm" placeholder="Confirm Password" autocomplete="new-password" required>
+          <button type="button" class="toggle-password" onclick="togglePassword('signup-confirm', this)">
+            <i class="fa-regular fa-eye"></i>
+          </button>
+        </div>
+        <div class="input-hint">Must contain a number and at least 6 characters</div>
+        <button type="submit" class="auth-btn">Sign Up</button>
+      </form>
+      <div class="auth-footer">
+        <span id="toggleAuthText">Don't have an account ?</span>
+        <a href="#" id="toggleAuthLink" onclick="toggleAuth(event)">Sign Up</a>
+      </div>
+    </div>
+  </div>
+  <div class="telegram-banner">
+    Join Our telegram Channel
+  </div>
+  <script>
+    // Firebase config (replace with your own)
+    const firebaseConfig = {
+      apiKey: "AIzaSyAb5cXmuKafo6qceyCZ9zlxOrO-C0rhd2M",
+      authDomain: "quiz-corner-ae3c4.firebaseapp.com",
+      databaseURL: "https://quiz-corner-ae3c4-default-rtdb.firebaseio.com",
+      projectId: "quiz-corner-ae3c4",
+      storageBucket: "quiz-corner-ae3c4.appspot.com",
+      messagingSenderId: "71676729091",
+      appId: "1:71676729091:web:2f2e286addf093a9e8bb36",
+      measurementId: "G-F820ZX0JCP"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // Toggle Login/Signup
+    function toggleAuth(e) {
+      if (e) e.preventDefault();
+      const loginForm = document.getElementById('loginForm');
+      const signupForm = document.getElementById('signupForm');
+      const toggleText = document.getElementById('toggleAuthText');
+      const toggleLink = document.getElementById('toggleAuthLink');
+      if (loginForm.style.display !== 'none') {
+        loginForm.style.display = 'none';
+        signupForm.style.display = 'block';
+        toggleText.textContent = 'Already have an account ?';
+        toggleLink.textContent = 'Log In';
+      } else {
+        loginForm.style.display = 'block';
+        signupForm.style.display = 'none';
+        toggleText.textContent = "Don't have an account ?";
+        toggleLink.textContent = 'Sign Up';
+      }
+      document.getElementById('login-message').innerHTML = '';
+      document.getElementById('signup-message').innerHTML = '';
+    }
+
+    // Password show/hide
+    function togglePassword(id, btn) {
+      const input = document.getElementById(id);
+      if (input.type === "password") {
+        input.type = "text";
+        btn.innerHTML = '<i class="fa-regular fa-eye-slash"></i>';
+      } else {
+        input.type = "password";
+        btn.innerHTML = '<i class="fa-regular fa-eye"></i>';
+      }
+    }
+
+    // Login
+    document.getElementById('loginForm').onsubmit = function(e) {
+      e.preventDefault();
+      const usernameOrEmail = document.getElementById('login-username').value.trim();
+      const password = document.getElementById('login-password').value;
+      document.getElementById('login-message').innerHTML = '';
+      // Only email login supported by Firebase Auth
+      let email = usernameOrEmail;
+      if (!email.includes('@')) {
+        document.getElementById('login-message').innerHTML = '<div class="error-message">Please use your email address to log in.</div>';
+        return;
+      }
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          document.getElementById('login-message').innerHTML = '<div class="success-message">Login successful! Redirecting...</div>';
+          setTimeout(() => window.location.href = '/dashboard', 1000); // <--- REDIRECT TO DASHBOARD
+        })
+        .catch(err => {
+          document.getElementById('login-message').innerHTML = '<div class="error-message">' + err.message + '</div>';
+        });
+    };
+
+    // Signup
+    document.getElementById('signupForm').onsubmit = function(e) {
+      e.preventDefault();
+      const email = document.getElementById('signup-email').value.trim();
+      const fullname = document.getElementById('signup-fullname').value.trim();
+      const username = document.getElementById('signup-username').value.trim();
+      const password = document.getElementById('signup-password').value;
+      const confirm = document.getElementById('signup-confirm').value;
+      document.getElementById('signup-message').innerHTML = '';
+
+      if (password !== confirm) {
+        document.getElementById('signup-message').innerHTML = '<div class="error-message">Passwords do not match.</div>';
+        return;
+      }
+      if (!/\d/.test(password) || password.length < 6) {
+        document.getElementById('signup-message').innerHTML = '<div class="error-message">Password must contain a number and at least 6 characters.</div>';
+        return;
+      }
+      // Only email signup supported by Firebase Auth
+      if (!email.includes('@')) {
+        document.getElementById('signup-message').innerHTML = '<div class="error-message">Please use a valid email address.</div>';
+        return;
+      }
+      auth.createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          // Optionally, update displayName
+          return userCredential.user.updateProfile({ displayName: fullname || username });
+        })
+        .then(() => {
+          document.getElementById('signup-message').innerHTML = '<div class="success-message">Signup successful! Redirecting...</div>';
+          setTimeout(() => window.location.href = '/dashboard', 1000); // <--- REDIRECT TO DASHBOARD
+        })
+        .catch(err => {
+          document.getElementById('signup-message').innerHTML = '<div class="error-message">' + err.message + '</div>';
+        });
+    };
+  </script>
+  <!-- Font Awesome for password toggle -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+</body>
+</html>

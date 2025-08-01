@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>NewsPaper Admin Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:700,900&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+      font-family: 'Poppins', Arial, sans-serif;
+      color: #232946;
+      min-height: 100vh;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      justify-content: space-between;
+      background: #fafafa;
+    }
+    .dashboard-header {
+      width: 100%;
+      background: radial-gradient(circle at 0 0, #2d2d3a 60%, #888 100%);
+      border-radius: 0 0 32px 32px;
+      padding: 32px 0 12px 0;
+      text-align: center;
+      margin-bottom: 0;
+      position: relative;
+    }
+    .dashboard-header h1 {
+      color: #fff;
+      font-family: 'Poppins', Arial, sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      margin: 0;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #0002;
+    }
+    .dashboard-header .subtitle {
+      color: #ffd966;
+      font-size: 1.3rem;
+      font-weight: 900;
+      margin: 0 0 0 0;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #0002;
+      border-bottom: 2px solid #ccc;
+      display: inline-block;
+      padding-bottom: 2px;
+    }
+    .dashboard-header .divider {
+      border: none;
+      border-top: 2px solid #ccc;
+      width: 80%;
+      margin: 10px auto 0 auto;
+    }
+    .dashboard-subbar {
+      width: 90%;
+      margin: 18px auto 18px auto;
+      background: #232946;
+      color: #ffd966;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 24px;
+      text-align: center;
+      padding: 10px 0 8px 0;
+      box-shadow: 0 2px 8px #0001;
+      font-style: italic;
+      letter-spacing: 0.5px;
+    }
+    .upload-card {
+      width: 90%;
+      margin: 0 auto 18px auto;
+      background: #fff;
+      border: 2.5px solid #232946;
+      border-radius: 18px;
+      box-shadow: 0 2px 8px #0001;
+      padding: 24px 12px 24px 12px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .upload-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 8px;
+    }
+    .upload-input {
+      width: 100%;
+      padding: 12px 0;
+      border: none;
+      border-bottom: 2px solid #ccc;
+      background: transparent;
+      font-size: 1.08rem;
+      color: #2d2d3a;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .upload-input:focus {
+      border-bottom: 2px solid #3b2ff5;
+    }
+    .upload-btn {
+      width: 100%;
+      background: #232946;
+      color: #fff;
+      border: none;
+      padding: 14px 0;
+      border-radius: 4px;
+      font-size: 1.13rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s, transform 0.1s;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px #0001;
+    }
+    .upload-btn:active {
+      background: #1a1a22;
+      transform: scale(0.98);
+    }
+    .section-title {
+      width: 90%;
+      margin: 24px auto 8px auto;
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: #232946;
+      letter-spacing: 1px;
+      text-align: left;
+    }
+    .recent-card {
+      width: 90%;
+      margin: 0 auto 18px auto;
+      background: #fff;
+      border: 2.5px solid #232946;
+      border-radius: 18px;
+      box-shadow: 0 2px 8px #0001;
+      padding: 18px 12px 18px 12px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .recent-card .news-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #232946;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0.5px;
+    }
+    .recent-card .news-date {
+      font-size: 1.05rem;
+      color: #232946;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .recent-card .divider {
+      border: none;
+      border-top: 2px solid #ccc;
+      width: 90%;
+      margin: 10px auto 10px auto;
+    }
+    .recent-actions {
+      width: 100%;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 8px;
+    }
+    .recent-actions button, .recent-actions a button {
+      width: 100%;
+      background: #232946;
+      color: #fff;
+      border: none;
+      padding: 12px 0;
+      border-radius: 4px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px #0001;
+    }
+    .recent-actions button:active, .recent-actions a button:active {
+      background: #1a1a22;
+      transform: scale(0.98);
+    }
+    /* Modal styles */
+    .modal-bg {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0; top: 0; width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.35);
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-bg.active { display: flex; }
+    .modal {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 32px #0003;
+      padding: 28px 18px 18px 18px;
+      width: 90vw;
+      max-width: 370px;
+      text-align: center;
+      position: relative;
+      animation: fadeIn 0.2s;
+    }
+    .modal h2 {
+      margin: 0 0 18px 0;
+      font-size: 1.3rem;
+      color: #232946;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+    .modal .close-btn {
+      position: absolute;
+      right: 18px; top: 18px;
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      color: #888;
+      cursor: pointer;
+    }
+    .modal input {
+      width: 100%;
+      padding: 10px 0;
+      border: none;
+      border-bottom: 2px solid #ccc;
+      background: transparent;
+      font-size: 1.08rem;
+      color: #2d2d3a;
+      font-family: inherit;
+      outline: none;
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+    .modal input:focus {
+      border-bottom: 2px solid #3b2ff5;
+    }
+    .modal .modal-btn {
+      width: 100%;
+      background: #232946;
+      color: #fff;
+      border: none;
+      padding: 12px 0;
+      border-radius: 4px;
+      font-size: 1.13rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s, transform 0.1s;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px #0001;
+    }
+    .modal .modal-btn:active {
+      background: #1a1a22;
+      transform: scale(0.98);
+    }
+    .modal .error-message, .modal .success-message {
+      margin-bottom: 10px;
+      font-size: 1rem;
+      color: #ff3b3b;
+      font-weight: 600;
+    }
+    .modal .success-message { color: #2ecc71; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .telegram-banner {
+      width: 100vw;
+      max-width: 414px;
+      background: radial-gradient(circle at 100% 100%, #2d2d3a 60%, #f6c177 100%);
+      color: #ffb84c;
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 22px 0 18px 0;
+      border-radius: 24px 24px 0 0;
+      margin: 0 auto 0 auto;
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      z-index: 100;
+      box-shadow: 0 -2px 16px #0002;
+      letter-spacing: 0.5px;
+    }
+    @media (max-width: 500px) {
+      .dashboard-header { padding: 24px 0 8px 0; border-radius: 0 0 18px 18px; }
+      .dashboard-header h1 { font-size: 1.5rem; }
+      .dashboard-header .subtitle { font-size: 1.1rem; }
+      .upload-card, .recent-card { padding: 10px 4px 14px 4px; }
+      .section-title { font-size: 1.05rem; }
+      .telegram-banner { font-size: 1.05rem; border-radius: 16px 16px 0 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-header">
+    <h1>NewsPaper</h1>
+    <div class="subtitle">ADMIN | Dashboard</div>
+    <!-- <hr class="divider"> -->
+  </div>
+  <div class="dashboard-subbar">
+    Upload NewsPaper From Here
+  </div>
+  <div class="upload-card">
+    <form class="upload-form" method="POST" action="/admin/add">
+      <input class="upload-input" type="text" name="name" placeholder="Enter Newspaper Name" required>
+      <input class="upload-input" type="date" name="date" required>
+      <input class="upload-input" type="text" name="link" placeholder="NewsPaper Download Link" required>
+      <button class="upload-btn" type="submit">Save</button>
+    </form>
+  </div>
+  <div class="section-title">Recent NEwspapers</div>
+  <% newspapers.forEach(function(np) { %>
+    <div class="recent-card" data-id="<%= np.id %>" data-name="<%= np.name %>" data-date="<%= np.date %>" data-link="<%= np.link %>">
+      <div class="news-title">📰 <%= np.name %></div>
+      <hr class="divider">
+      <div class="news-date">📅 <%= np.date %></div>
+      <div class="recent-actions">
+        <button type="button" class="edit-btn">EDIT</button>
+        <a href="/download/<%= np.id %>">
+          <button type="button">DOWNLOAD</button>
+        </a>
+      </div>
+    </div>
+  <% }) %>
+
+  <!-- Edit Modal -->
+  <div class="modal-bg" id="editModalBg">
+    <div class="modal">
+      <button class="close-btn" onclick="closeModal()">&times;</button>
+      <h2>Edit Newspaper</h2>
+      <form id="editForm">
+        <input type="hidden" id="edit-id" name="id">
+        <input type="text" id="edit-name" name="name" placeholder="Enter Newspaper Name" required>
+        <input type="date" id="edit-date" name="date" required>
+        <input type="text" id="edit-link" name="link" placeholder="NewsPaper Download Link" required>
+        <div id="edit-message"></div>
+        <button type="submit" class="modal-btn">Save Changes</button>
+      </form>
+    </div>
+  </div> <br>
+
+  <!-- <div class="telegram-banner">
+    Join Our telegram Channel
+  </div> -->
+  <script>
+    // Open modal and fill form
+    document.querySelectorAll('.edit-btn').forEach(btn => {
+      btn.onclick = function() {
+        const card = btn.closest('.recent-card');
+        document.getElementById('edit-id').value = card.getAttribute('data-id');
+        document.getElementById('edit-name').value = card.getAttribute('data-name');
+        document.getElementById('edit-date').value = card.getAttribute('data-date');
+        document.getElementById('edit-link').value = card.getAttribute('data-link');
+        document.getElementById('edit-message').innerHTML = '';
+        document.getElementById('editModalBg').classList.add('active');
+      };
+    });
+    function closeModal() {
+      document.getElementById('editModalBg').classList.remove('active');
+    }
+    // AJAX submit edit form
+    document.getElementById('editForm').onsubmit = function(e) {
+      e.preventDefault();
+      const id = document.getElementById('edit-id').value;
+      const name = document.getElementById('edit-name').value;
+      const date = document.getElementById('edit-date').value;
+      const link = document.getElementById('edit-link').value;
+      fetch(`/admin/edit/${id}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `name=${encodeURIComponent(name)}&date=${encodeURIComponent(date)}&link=${encodeURIComponent(link)}`
+      })
+      .then(res => res.ok ? res.text() : Promise.reject('Failed'))
+      .then(() => {
+        document.getElementById('edit-message').innerHTML = '<div class="success-message">Updated!</div>';
+        setTimeout(() => { window.location.reload(); }, 800);
+      })
+      .catch(() => {
+        document.getElementById('edit-message').innerHTML = '<div class="error-message">Update failed.</div>';
+      });
+    };
+    // Close modal on background click
+    document.getElementById('editModalBg').onclick = function(e) {
+      if (e.target === this) closeModal();
+    };
+  </script>
+</body>
+</html>
