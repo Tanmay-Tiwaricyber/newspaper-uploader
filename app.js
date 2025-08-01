@@ -7,7 +7,7 @@ const serviceAccount = require('./serviceAccountKey.json');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://quiz-corner-ae3c4-default-rtdb.firebaseio.com"
+  databaseURL: "https://newspaper-tg-default-rtdb.firebaseio.com"
 });
 
 const db = admin.database();
